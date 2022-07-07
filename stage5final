@@ -6,12 +6,14 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         // game state
+        
         boolean xWins = false;
         boolean oWins = false;
         boolean draw = false;
         boolean gameEnds = false;
 
         // printing empty grid
+        
         System.out.println("---------");
         System.out.println("|       |");
         System.out.println("|       |");
@@ -19,6 +21,7 @@ public class Main {
         System.out.println("---------");
 
         // initial matrix
+        
         char[][] matrix = new char[3][3];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
@@ -27,6 +30,7 @@ public class Main {
         }
 
         // iterating by coordinates
+        
         int coordinate1 = 0;
         int coordinate2 = 0;
         boolean allChecks = false;
@@ -164,6 +168,8 @@ public class Main {
                 gameEnds = true;
             }
         }
+        
+        // printing final grid
 
         System.out.println("---------");
         for (int i = 0; i < 3; i++) {
@@ -176,7 +182,10 @@ public class Main {
             }
         }
         System.out.println("---------");
-
+        
+        
+        // printing the result
+        
         if (xWins) {
             System.out.println("X wins");
         } else if (oWins) {
