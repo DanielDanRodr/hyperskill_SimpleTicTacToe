@@ -1,190 +1,190 @@
-packagetictactoe;
-importjava.util.Scanner;
+package tictactoe;
+import java.util.Scanner;
 
-publicclassMain{
-publicstaticvoidmain(String[]args){
-Scannerscanner=newScanner(System.in);
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-//gamestate
-booleanxWins=false;
-booleanoWins=false;
-booleandraw=false;
-booleangameEnds=false;
+        // game state
+        boolean xWins = false;
+        boolean oWins = false;
+        boolean draw = false;
+        boolean gameEnds = false;
 
-//printingemptygrid
-System.out.println("---------");
-System.out.println("||");
-System.out.println("||");
-System.out.println("||");
-System.out.println("---------");
+        // printing empty grid
+        System.out.println("---------");
+        System.out.println("|       |");
+        System.out.println("|       |");
+        System.out.println("|       |");
+        System.out.println("---------");
 
-//initialmatrix
-char[][]matrix=newchar[3][3];
-for(inti=0;i<matrix.length;i++){
-for(intj=0;j<matrix[i].length;j++){
-matrix[i][j]='';
-}
-}
+        // initial matrix
+        char[][] matrix = new char[3][3];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = ' ';
+            }
+        }
 
-//iteratingbycoordinates
-intcoordinate1=0;
-intcoordinate2=0;
-booleanallChecks=false;
-booleanlastPlayerX=false;
-intcounterX=0;
-intcounterO=0;
+        // iterating by coordinates
+        int coordinate1 = 0;
+        int coordinate2 = 0;
+        boolean allChecks = false;
+        boolean lastPlayerX = false;
+        int counterX = 0;
+        int counterO = 0;
 
-while(!gameEnds){
-allChecks=false;
-do{
-System.out.println("Enterthecoordinates:");
-if(scanner.hasNextInt()){
-coordinate1=scanner.nextInt();
-}else{
-System.out.println("Youshouldenternumbers!");
-continue;
-}
-if(scanner.hasNextInt()){
-coordinate2=scanner.nextInt();
-}else{
-System.out.println("Youshouldenternumbers!");
-continue;
-}
-if(coordinate1<1||coordinate1>3){
-System.out.println("Coordinatesshouldbefrom1to3!");
-continue;
-}
-if(coordinate2<1||coordinate2>3){
-System.out.println("Coordinatesshouldbefrom1to3!");
-continue;
-}
-if(matrix[coordinate1-1][coordinate2-1]!=''){
-System.out.println("Thiscellisoccupied!Chooseanotherone!");
-continue;
-}
-allChecks=true;
-if(lastPlayerX==false){
-matrix[coordinate1-1][coordinate2-1]='X';
-lastPlayerX=true;
-counterX++;
-}else{
-matrix[coordinate1-1][coordinate2-1]='O';
-counterO++;
-lastPlayerX=false;
-}
-}while(!allChecks);
+        while (!gameEnds) {
+            allChecks = false;
+            do {
+                System.out.println("Enter the coordinates: ");
+                if (scanner.hasNextInt()) {
+                    coordinate1 = scanner.nextInt();
+                } else {
+                    System.out.println("You should enter numbers!");
+                    continue;
+                }
+                if (scanner.hasNextInt()) {
+                    coordinate2 = scanner.nextInt();
+                } else {
+                    System.out.println("You should enter numbers!");
+                    continue;
+                }
+                if (coordinate1 < 1 || coordinate1 > 3) {
+                    System.out.println("Coordinates should be from 1 to 3!");
+                    continue;
+                }
+                if (coordinate2 < 1 || coordinate2 > 3) {
+                    System.out.println("Coordinates should be from 1 to 3!");
+                    continue;
+                }
+                if (matrix[coordinate1 - 1][coordinate2 - 1] != ' ') {
+                    System.out.println("This cell is occupied! Choose another one!");
+                    continue;
+                }
+                allChecks = true;
+                if (lastPlayerX == false) {
+                    matrix[coordinate1 - 1][coordinate2 - 1] = 'X';
+                    lastPlayerX = true;
+                    counterX++;
+                } else {
+                    matrix[coordinate1 - 1][coordinate2 - 1] = 'O';
+                    counterO++;
+                    lastPlayerX = false;
+                }
+            } while (!allChecks);
 
-//printingupdatedgrid
-System.out.println("---------");
-for(inti=0;i<3;i++){
-System.out.print("|"+"");
-for(intj=0;j<3;j++){
-System.out.print(matrix[i][j]+"");
-if(j==2){
-System.out.println("|");
-}
-}
-}
-System.out.println("---------");
+            // printing updated grid
+            System.out.println("---------");
+            for (int i = 0; i < 3; i++) {
+                System.out.print("|" + " ");
+                for (int j = 0; j < 3; j++) {
+                    System.out.print(matrix[i][j] + " ");
+                    if (j == 2) {
+                        System.out.println("|");
+                    }
+                }
+            }
+            System.out.println("---------");
 
-//checkinggamestate
+            // checking game state
 
-if(matrix[0][0]==matrix[0][1]&&matrix[0][1]==matrix[0][2]){
-if(matrix[0][0]=='X'){
-xWins=true;
-}elseif(matrix[0][0]=='O'){
-oWins=true;
-}
-}
-if(matrix[1][0]==matrix[1][1]&&matrix[1][1]==matrix[1][2]){
-if(matrix[1][0]=='X'){
-xWins=true;
-}elseif(matrix[1][0]=='O'){
-oWins=true;
-}
-}
-if(matrix[2][0]==matrix[2][1]&&matrix[2][1]==matrix[2][2]){
-if(matrix[2][0]=='X'){
-xWins=true;
-}elseif(matrix[2][0]=='O'){
-oWins=true;
-}
-}
+            if (matrix[0][0] == matrix[0][1] && matrix[0][1] == matrix[0][2]) {
+                if (matrix[0][0] == 'X') {
+                    xWins = true;
+                } else if (matrix[0][0] == 'O') {
+                    oWins = true;
+                }
+            }
+            if (matrix[1][0] == matrix[1][1] && matrix[1][1] == matrix[1][2]) {
+                if (matrix[1][0] == 'X') {
+                    xWins = true;
+                } else if (matrix[1][0] == 'O') {
+                    oWins = true;
+                }
+            }
+            if (matrix[2][0] == matrix[2][1] && matrix[2][1] == matrix[2][2]) {
+                if (matrix[2][0] == 'X') {
+                    xWins = true;
+                } else if (matrix[2][0] == 'O') {
+                    oWins = true;
+                }
+            }
 
-if(matrix[0][0]==matrix[1][0]&&matrix[1][0]==matrix[2][0]){
-if(matrix[0][0]=='X'){
-xWins=true;
-}elseif(matrix[0][0]=='O'){
-oWins=true;
-}
-}
-if(matrix[0][1]==matrix[1][1]&&matrix[1][1]==matrix[2][1]){
-if(matrix[0][1]=='X'){
-xWins=true;
-}elseif(matrix[0][1]=='O'){
-oWins=true;
-}
-}
-if(matrix[0][2]==matrix[1][2]&&matrix[1][2]==matrix[2][2]){
-if(matrix[0][2]=='X'){
-xWins=true;
-}elseif(matrix[0][2]=='O'){
-oWins=true;
-}
-}
+            if (matrix[0][0] == matrix[1][0] && matrix[1][0] == matrix[2][0]) {
+                if (matrix[0][0] == 'X') {
+                    xWins = true;
+                } else if (matrix[0][0] == 'O') {
+                    oWins = true;
+                }
+            }
+            if (matrix[0][1] == matrix[1][1] && matrix[1][1] == matrix[2][1]) {
+                if (matrix[0][1] == 'X') {
+                    xWins = true;
+                } else if (matrix[0][1] == 'O') {
+                    oWins = true;
+                }
+            }
+            if (matrix[0][2] == matrix[1][2] && matrix[1][2] == matrix[2][2]) {
+                if (matrix[0][2] == 'X') {
+                    xWins = true;
+                } else if (matrix[0][2] == 'O') {
+                    oWins = true;
+                }
+            }
 
-if(matrix[0][0]==matrix[1][1]&&matrix[1][1]==matrix[2][2]){
-if(matrix[0][0]=='X'){
-xWins=true;
-}elseif(matrix[0][0]=='O'){
-oWins=true;
-}
-}
-if(matrix[0][2]==matrix[1][1]&&matrix[1][1]==matrix[2][0]){
-if(matrix[0][2]=='X'){
-xWins=true;
-}elseif(matrix[0][2]=='O'){
-oWins=true;
-}
-}
+            if (matrix[0][0] == matrix[1][1] && matrix[1][1] == matrix[2][2]) {
+                if (matrix[0][0] == 'X') {
+                    xWins = true;
+                } else if (matrix[0][0] == 'O') {
+                    oWins = true;
+                }
+            }
+            if (matrix[0][2] == matrix[1][1] && matrix[1][1] == matrix[2][0]) {
+                if (matrix[0][2] == 'X') {
+                    xWins = true;
+                } else if (matrix[0][2] == 'O') {
+                    oWins = true;
+                }
+            }
 
-System.out.println(counterX);
-System.out.println(counterO);
+            System.out.println(counterX);
+            System.out.println(counterO);
 
-if((counterX+counterO)>=9){
-draw=true;
+            if ((counterX + counterO) >= 9) {
+                draw = true;
 
-}
+            }
 
-if(xWins){
-gameEnds=true;
-}elseif(oWins){
-gameEnds=true;
-}elseif(draw){
-gameEnds=true;
-}
-}
+            if (xWins) {
+                gameEnds = true;
+            } else if (oWins) {
+                gameEnds = true;
+            } else if (draw) {
+                gameEnds = true;
+            }
+        }
 
-System.out.println("---------");
-for(inti=0;i<3;i++){
-System.out.print("|"+"");
-for(intj=0;j<3;j++){
-System.out.print(matrix[i][j]+"");
-if(j==2){
-System.out.println("|");
-}
-}
-}
-System.out.println("---------");
+        System.out.println("---------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("|" + " ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(matrix[i][j] + " ");
+                if (j == 2) {
+                    System.out.println("|");
+                }
+            }
+        }
+        System.out.println("---------");
 
-if(xWins){
-System.out.println("Xwins");
-}elseif(oWins){
-System.out.println("Owins");
-}elseif(draw){
-System.out.println("Draw");
-}
+        if (xWins) {
+            System.out.println("X wins");
+        } else if (oWins) {
+            System.out.println("O wins");
+        } else if (draw) {
+            System.out.println("Draw");
+        }
 
 
-}
+    }
 }
